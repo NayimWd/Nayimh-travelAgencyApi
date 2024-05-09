@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { type } = require("os");
 
 const stringType = {
 	type: String,
@@ -56,7 +57,7 @@ const HotelSchema =  new mongoose.Schema({
     },
     discountedPrice: Number,
     personCount: String,
-    quality: String,
+    quality: {type: Number, required: true},
     ratings: Number,
     phone: String,
     email: String,
