@@ -1,3 +1,4 @@
+// this hotel controller created with old pattern for practice purposes on other controller I followed new pattern 
 const hotelModel = require("../models/hotelModel/hotelModel");
 
 // create

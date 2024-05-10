@@ -1,10 +1,4 @@
 const mongoose = require("mongoose");
-const { type } = require("os");
-
-const stringType = {
-	type: String,
-    required: true
-}
 
 
 const HotelSchema =  new mongoose.Schema({
