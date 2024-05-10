@@ -9,9 +9,9 @@ exports.createHotel = async (req, res) => {
 		.create(newHotel)
 		.then((result) => {
 			if (result) {
-				res.status(201).json({ status: "New Hotel Listed!", data: result });
+				res.status(201).json({ status: "Success", message: "New Hotel Listed!", data: result });
 			} else {
-				res.status(201).json({ status: "Invalid Data Model!", data: result });
+				res.status(201).json({ status: "Error", message: "Invalid Data Model!", data: result });
 			}
 		})
 		.catch((err) => {
@@ -32,9 +32,9 @@ exports.updateHotel = (req, res) => {
 		.findByIdAndUpdate(id, { $set: reqBody }, options)
 		.then((result) => {
 			if (result) {
-				res.status(200).json({ status: "Hotel Data Updated!", data: result });
+				res.status(200).json({ status: "Success", message: "Hotel Data Updated!", data: result });
 			} else {
-				res.status(404).json({ status: "Update Failed! Invalid data model" });
+				res.status(404).json({ status: "Error", message: "Update Failed! Invalid data model" });
 			}
 		})
 		.catch((err) => {
@@ -53,9 +53,9 @@ exports.deleteHotel = (req, res) => {
     hotelModel.findByIdAndDelete(hotelId)
         .then((deletedHotel) => {
             if (deletedHotel) {
-                res.status(200).json({ status: "Hotel deleted successfully", data: deletedHotel });
+                res.status(200).json({status: "Success", message: "Hotel deleted successfully", data: deletedHotel });
             } else {
-                res.status(404).json({ status: "Hotel not found" });
+                res.status(404).json({ status: "Error", message: "Hotel not found" });
             }
         })
         .catch((err) => {
@@ -116,7 +116,7 @@ exports.getAllHotels = (req, res) => {
 					data: result,
 				});
 			} else {
-				res.status(404).json({ status: "No Hotel found" });
+				res.status(404).json({ status: "NotFound", message: "No Hotel found" });
 			}
 		})
 		.catch((err) => {
@@ -134,9 +134,9 @@ exports.getSingleHotel = (req, res) => {
 		.findById(hotelId)
 		.then((result) => {
 			if (result) {
-				res.status(200).json({ status: "Hotel found!", data: result });
+				res.status(200).json({status: "Success", message: "Hotel found!", data: result });
 			} else {
-				res.status(404).json({ status: "Hotel not found" });
+				res.status(404).json({ status: "NotFound", message: "Hotel not found" });
 			}
 		})
 		.catch((err) => {

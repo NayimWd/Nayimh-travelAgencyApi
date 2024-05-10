@@ -96,7 +96,7 @@ exports.loginUser = async (req, res) => {
 			{ expiresIn: "1h" }
 		);
 
-		res.cookie("access-token", token, {
+		res.cookie("access_token", token, {
 			httpOnly: true,
 			secure: true,
 			sameSite: "strict",
