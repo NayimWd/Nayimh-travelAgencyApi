@@ -1,19 +1,19 @@
 const express = require('express');
 const { getAllUser, getSingleUser, upDateUser, deleteUser, getUserStats } = require('../controller/userController');
-const { verifyToken, verifyUser, verifyAdmin } = require('../middleware/authVerifyMiddleware');
+const {  verifyUser, verifyAdmin } = require('../middleware/authVerifyMiddleware');
 const userRouter = express.Router();
 
 
 
 // get all user 
-userRouter.get("/getAllUser", getAllUser);
+userRouter.get("/getAllUser", verifyAdmin, getAllUser);
 // get single user
-userRouter.get("/getSingleUser/:id", getSingleUser);
+userRouter.get("/getSingleUser/:id", verifyUser, getSingleUser);
 // get single user
-userRouter.put("/updateUser/:id", upDateUser);
+userRouter.put("/updateUser/:id",verifyUser, upDateUser);
 // get single user
-userRouter.delete("/deleteUser/:id", deleteUser);
+userRouter.delete("/deleteUser/:id",verifyUser, deleteUser);
 // get user stats
-userRouter.get("/userStats", getUserStats);
+userRouter.get("/userStats", verifyAdmin, getUserStats);
 
 module.exports=userRouter;
