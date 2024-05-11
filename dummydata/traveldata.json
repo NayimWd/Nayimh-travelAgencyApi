@@ -2,6 +2,8 @@
 	{
 		"title": "Honeymoon at Cox's Bazar - Package Tour with Flight and Hotel",
 		"overview": "This three day two nights romantic retreat with your loved ones in Cox's Bazar will be enjoyable. Be prepared for the hypnotizing view of the sea beaches and the mountains of Cox's Bazar. Experience a beach holiday like never before on this vacation to Cox's Bazar.",
+		"city": "Cox's Bazar",
+		"type": "group tour",
 		"location": {
 			"place": "Cox's Bazar",
 			"around": "Kolatoli Beach, Marine Drive, Doria Nagar Beach, Himchari National Park, Kakra Beach, Mermaid Beach Resort, Mermaid Eco Resort, Reju Canal, Inani Sea Beach, Patuartek Beach"
@@ -18,7 +20,7 @@
 		"description": "Rooms will be allotted selected hotel / resorts only.",
 		"additionalInfo": {
 			"instantbooking": "Instant booking available",
-			"requirment": "Copy of NID card"
+			"requirement": "Copy of NID card"
 		},
 		"seat": {
 			"minimum" : 2,
@@ -30,6 +32,7 @@
             "https://i.ibb.co/X5DYrcg/coxbazar.jpg",
             "https://i.ibb.co/X5DYrcg/coxbazar.jpg",
             "https://i.ibb.co/X5DYrcg/coxbazar.jpg"
-        ]
+        ],
+		"timeSlot": []
 	}
 ]

@@ -2,30 +2,19 @@ const mongoose = require("mongoose");
 
 
 const HotelSchema =  new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    location: {
-        type: String,
-        required: true
-    },
+    name: String,
+    type: String,
+    location: String,
     details: {
-        place: {
-            type: String,
-            required: true
-        },
-        area: {
-            type: String,
-            required: true
-        }
+        place: String,
+        area: String
     },
     nearby: {
         first: String,
         second: String,
         third: String
     },
-    rooms: String, // You might want to specify a type here if you have a specific schema for rooms
+    rooms: [], 
     description: {
         numberOfRoom: String,
         numberOfFloor: String,
@@ -38,28 +27,32 @@ const HotelSchema =  new mongoose.Schema({
         pickup: String,
         parking: String,
         elevator: String,
-        coupleFriently: String
+        coupleFriendly: String // Corrected the typo here
     },
     meal: {
         breakfast: String,
-        Lunch: String,
+        lunch: String, // Corrected the casing here
         dinner: String
     },
-    price: {
-        type: Number,
+    maxPrice: {
+        type: String,
         required: true
     },
-    discountedPrice: Number,
-    personCount: String,
-    quality: {type: Number, required: true},
+    minPrice: {
+        type: String,
+        required: true
+    },
+    quality: {
+        type: Number,
+        min: 0,
+        max: 5
+    },
     ratings: Number,
     phone: String,
     email: String,
-    featured: {
-        type: Boolean,
-        default: false
-    }
+    featured: Boolean
 });
+
 
 
 const hotelModel = mongoose.model("Hotels", HotelSchema);

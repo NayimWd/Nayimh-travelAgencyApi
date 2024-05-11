@@ -65,65 +65,44 @@ exports.deleteHotel = (req, res) => {
 };
 
 // get all
-exports.getAllHotels = (req, res) => {
-	let search = req.query.search || ""; // Default search is empty string
-	let cityName = req.query.city || ""; // City name filter
-	let limit = parseInt(parseInt(req.query.limit)) || 10;
-	let sort = req.query.sort || "";
+exports.getAllHotels = async (req, res) => {
+    try {
+        const { location, name, type, sort, limit, page } = req.query;
+        const query = {};
 
-	// Construct the search filter based on the provided search criteria
-	let searchFilter = {};
-	if (search) {
-		searchFilter.name = { $regex: search, $options: "i" };
-	}
+        // Apply search filters
+        if (location) query['details.place'] = location;
+        if (name) query.name = { $regex: name, $options: 'i' };
+        if (type) query.type = type;
 
-	// Construct the city filter based on the provided city name
-	let cityFilter = {};
-	if (cityName) {
-		cityFilter.location = cityName;
-	}
+        // Apply sorting options
+        const sortOptions = {};
+        if (sort === 'priceLowToHigh') {
+            sortOptions.minPrice = 1;
+        } else if (sort === 'priceHighToLow') {
+            sortOptions.maxPrice = -1;
+        } else if (sort === 'ratingsHighToLow') {
+            sortOptions.ratings = -1;
+        } else if (sort === 'ratingsLowToHigh') {
+            sortOptions.ratings = 1;
+        }
 
-	// Validate and construct the sort object based on the provided sorting criteria
-	let sortOptions = {};
-	if (sort) {
-		switch (sort) {
-			case "priceLowToHigh":
-				sortOptions.price = 1; // Sort by price in ascending order
-				break;
-			case "priceHighToLow":
-				sortOptions.price = -1; // Sort by price in descending order
-				break;
-			case "ratingsHighToLow":
-				sortOptions.quality = -1; // Sort by ratings (quality) in descending order
-				break;
-			case "ratingsLowToHigh":
-				sortOptions.quality = 1; // Sort by ratings (quality) in ascending order
-				break;
-			default:
-				break;
-		}
-	}
+        // Apply pagination
+        const pageNumber = parseInt(page) || 1;
+        const pageSize = parseInt(limit) || 10;
+        const skip = (pageNumber - 1) * pageSize;
 
-	hotelModel
-		.find({ ...searchFilter, ...cityFilter })
-		.limit(limit)
-		.sort(sortOptions)
-		.then((result) => {
-			if (result.length > 0) {
-				res.status(200).json({
-					status: "All hotels found!",
-					message: `Showing ${result.length} hotels`,
-					data: result,
-				});
-			} else {
-				res.status(404).json({ status: "NotFound", message: "No Hotel found" });
-			}
-		})
-		.catch((err) => {
-			res
-				.status(500)
-				.json({ status: "somthing error in finding hotels", data: err });
-		});
+        // Retrieve hotels based on filters, sorting, and pagination
+        const hotels = await HotelModel.find(query)
+            .sort(sortOptions)
+            .skip(skip)
+            .limit(pageSize);
+
+        res.status(200).json({ status: "Success", message: "Hotels Found successfully", data: hotels });
+    } catch (error) {
+        console.error("Error retrieving hotels:", error);
+        res.status(500).json({ status: "Error", message: "Something went wrong in Finding hotels", error: error });
+    }
 };
 
 // get single hotel
