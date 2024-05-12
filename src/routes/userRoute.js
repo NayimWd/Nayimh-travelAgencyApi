@@ -8,11 +8,11 @@ const userRouter = express.Router();
 // get all user 
 userRouter.get("/getAllUser", verifyAdmin, getAllUser);
 // get single user
-userRouter.get("/getSingleUser/:id", verifyUser, getSingleUser);
+userRouter.get("/getSingleUser/:email", verifyUser, getSingleUser);
 // get single user
-userRouter.put("/updateUser/:id",verifyUser, upDateUser);
+userRouter.put("/updateUser/:email",verifyUser, upDateUser);
 // get single user
-userRouter.delete("/deleteUser/:id",verifyUser, deleteUser);
+userRouter.delete("/deleteUser/:email",verifyUser, deleteUser);
 // get user stats
 userRouter.get("/userStats", verifyAdmin, getUserStats);
 

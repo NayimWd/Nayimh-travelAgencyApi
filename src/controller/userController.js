@@ -1,4 +1,5 @@
 const userModel = require("../models/userModel/userModel");
+const {  validPhoneNumber } = require("../utils/helper");
 
 // Get all user
 exports.getAllUser = async (req, res) => {
@@ -33,89 +34,106 @@ exports.getAllUser = async (req, res) => {
 // Get single user
 exports.getSingleUser = async (req, res) => {
 	try {
-		const userId = req.params.id;
+        const userEmail = req.params.email;
 
-		// find with id
-		user = await userModel.findById(userId);
-		// check if user exist
-		if (!user) {
-			return res.json(400).json({ status: "NotFound" });
-		}
+        // Find the user by email
+        const user = await userModel.findOne({ email: userEmail });
 
-		res
-			.status(200)
-			.json({ status: "Success", message: "User Found", data: user });
-	} catch (error) {
-		res.status(500).json({
-			status: "Error",
-			message: "somethong went wrong fetching the user",
-		});
-	}
+        if (!user) {
+            return res.status(404).json({
+                status: 'Error',
+                message: 'User not found',
+            });
+        }
+
+        res.status(200).json({
+            status: 'Success',
+            data: user,
+        });
+    } catch (error) {
+        console.error('Error fetching user:', error);
+        res.status(500).json({
+            status: 'Error',
+            message: 'Something went wrong while fetching user',
+            error: error,
+        });
+    }
 };
 // update user
 exports.upDateUser = async (req, res) => {
 	try {
-		const userId = req.params.id;
+        const userEmail = req.params.email;
+        let userDataToUpdate = req.body;
+		
+        // Ensure email field is not included in the update
+        if (userDataToUpdate.email) {
+            delete userDataToUpdate.email;
+        }
 
-		// data for update
-		const updateData = req.body;
+		   // Validate phone number format if provided
+		   if (userDataToUpdate.phoneNumber && !validPhoneNumber(userDataToUpdate.phoneNumber)) {
+            return res.status(400).json({
+                status: 'Error',
+                message: 'Invalid phone number format',
+            });
+        }
 
-		// find and update user
-		const updateUser = await userModel.findByIdAndUpdate(userId, updateData, { new: true });
+        // Find the user by email and update
+        const updatedUser = await userModel.findOneAndUpdate(
+            { email: userEmail },
+            userDataToUpdate,
+            { new: true }
+        );
 
-		// check user exist
-		if (!updateUser) {
-			return res
-				.status(404)
-				.json({ status: "Error", message: "User not found" });
-		}
+        if (!updatedUser) {
+            return res.status(404).json({
+                status: 'Error',
+                message: 'User not found',
+            });
+        }
 
-		// Return updated user
-		res
-			.status(200)
-			.json({
-				status: "Success",
-				message: "User updated successfully",
-				data: updateUser,
-			});
-	} catch (error) {
-		res.status(500).json({
-			status: "Error",
-			message: "something went wrong updating the user",
-		});
-	}
+        res.status(200).json({
+            status: 'Success',
+            message: 'User updated successfully',
+            data: updatedUser,
+        });
+    } catch (error) {
+        console.error('Error updating user:', error);
+        res.status(500).json({
+            status: 'Error',
+            message: 'Something went wrong while updating user',
+            error: error,
+        });
+    }
 };
 // delete user
 exports.deleteUser = async (req, res) => {
 	try {
-		const userId = req.params.id;
+        const { email } = req.params;
 
-		const deletedUser = await userModel.findByIdAndDelete(userId);
+        // Find and delete the user by email
+        const deletedUser = await userModel.findOneAndDelete({ email: email });
 
-		// check if user exist
-		if (!deletedUser) {
-			return res
-				.status(404)
-				.json({ status: "Error", message: "User not found" });
-		}
+        if (!deletedUser) {
+            return res.status(404).json({
+                status: "Error",
+                message: "User not found",
+            });
+        }
 
-		// Return deleted user
-		res
-			.status(200)
-			.json({
-				status: "Success",
-				message: "User deleted successfully",
-				data: deletedUser,
-			});
-	} catch (error) {
-		res
-			.status(500)
-			.json({
-				status: "Error",
-				message: "Something went wrong in deleting the user",
-				error: error,
-			});
-	}
+        res.status(200).json({
+            status: "Success",
+            message: "User deleted successfully",
+            data: deletedUser,
+        });
+    } catch (error) {
+        console.error("Error deleting user:", error);
+        res.status(500).json({
+            status: "Error",
+            message: "Something went wrong in deleting user",
+            error: error,
+        });
+    }
 };
 
 
