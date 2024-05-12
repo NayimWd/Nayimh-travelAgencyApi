@@ -122,6 +122,34 @@ exports.getAllTour = async (req, res) => {
 			});
 	}
 };
+
+// get tours by features
+exports.getFeaturedTour = async (req, res) => {
+	try {
+		const featuredTour = await TourModel.find({featured: true});
+
+		if(featuredTour.length === 0){
+			return res.status(404).json({
+				status: "Error",
+				message: "Featured Tour package empty!"
+			})
+		}
+
+		res.status(200).json({
+			status: "Success",
+			message: "Feature tour found successfully",
+			data: featuredTour
+		})
+
+	} catch (error) {
+		res.status(500).json({
+            status: 'Error',
+            message: 'Something went wrong while retrieving featured Tour package',
+            error: error.message,
+        });
+	}
+}
+
 // get single tour tour package
 exports.getSingleTourPackage = async (req, res) => {
 	try {

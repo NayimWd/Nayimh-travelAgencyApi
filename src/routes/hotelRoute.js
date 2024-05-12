@@ -1,5 +1,5 @@
 const express = require('express');
-const { createHotel, getAllHotels, getSingleHotel, updateHotel, filterHotels, getHotelStats, deleteHotel } = require('../controller/hotelController');
+const { createHotel, getAllHotels, getSingleHotel, updateHotel, filterHotels, getHotelStats, deleteHotel, getHotelsByFeatured } = require('../controller/hotelController');
 const { verifyAdmin, verifyUser } = require('../middleware/authVerifyMiddleware');
 const hotelRouter = express.Router();
 
@@ -11,6 +11,8 @@ hotelRouter.put("/updateHotel/:id", verifyUser, updateHotel)
 hotelRouter.delete("/deleteHotel/:id", verifyUser, deleteHotel)
 // get all hotel
 hotelRouter.get("/getAllHotels", getAllHotels)
+// get all hotel
+hotelRouter.get("/getHotelsByFeature", getHotelsByFeatured)
 // get single hotel
 hotelRouter.get("/getSingleHotel/:id", getSingleHotel)
 // get total hotel count

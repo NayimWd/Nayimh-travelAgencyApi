@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
+const { type } = require("os");
 
 
 const HotelSchema =  new mongoose.Schema({
-    name: String,
+    title: String,
     type: String,
-    location: String,
+    city: String,
     details: {
         place: String,
         area: String
@@ -20,7 +21,7 @@ const HotelSchema =  new mongoose.Schema({
         numberOfFloor: String,
         overview: String
     },
-    photo: [String],
+    image: [String],
     facilities: {
         bathroom: String,
         disability: String,
@@ -50,7 +51,10 @@ const HotelSchema =  new mongoose.Schema({
     ratings: Number,
     phone: String,
     email: String,
-    featured: Boolean
+    featured: {
+        type: String,
+        default : false
+    }
 });
 
 

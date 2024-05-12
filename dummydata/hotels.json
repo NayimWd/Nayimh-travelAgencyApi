@@ -1,9 +1,9 @@
 [
     {
        
-        "name": "Hotel Sea Crown",
+        "title": "Hotel Sea Crown",
         "type": "Resort",
-        "location": "coxbazar",
+        "city": "coxbazar",
         "details": {
           "place": "coxbazar",
           "area": "Marin Drive, New Beach Road, Kolatoli, Cox's Bazar, Bangladesh"
@@ -21,7 +21,7 @@
           "numberOfFloor": "7",
           "overview": "Hotel Sea Crown started it′ business from late 2004. Sea Crown is a three Star Deluxe Hotel spectacularly designed and added with traditional hospitality of courteous, attractive and personalized service and is conveniently located right on the beach at a distance of 100 (one hundred) meter from Kolatoli turning point and 3 (three) kilometers from Airport in Cox′s Bazar"
         },
-        "photo": [
+        "image": [
           "https://i.ibb.co/X5DYrcg/coxbazar.jpg",
           "https://i.ibb.co/X5DYrcg/coxbazar.jpg",
           "https://i.ibb.co/X5DYrcg/coxbazar.jpg"

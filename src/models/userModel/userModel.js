@@ -34,7 +34,32 @@ const userSchema = new mongoose.Schema(
 		address: {
 			type: String,
 			default: "",
-		}
+		},
+		cart: [
+            {
+                title: {
+					type: String,
+					default: "",
+				},
+                type: {
+					type: String,
+					default: "",
+				},
+                price: {
+					type: String,
+					default: "",
+				},
+                city: {
+					type: String,
+					default: "",
+				},
+                photoUrl: {
+					type: String,
+					default: "",
+				},
+                itemId: mongoose.Schema.Types.ObjectId, 
+            }
+        ]
 	},
 	{ timestamps: true }
 );

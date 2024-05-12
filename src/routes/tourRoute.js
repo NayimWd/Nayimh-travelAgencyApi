@@ -1,7 +1,6 @@
 const express = require('express');
 const { verifyAdmin, verifyUser } = require('../middleware/authVerifyMiddleware');
-const { createTourPackage, updateTourPackage, deleteTourPackage, getAllTour, getSingleTourPackage, getTourPackageStats } = require('../controller/tourController');
-const { getSingleHotel } = require('../controller/hotelController');
+const { createTourPackage, updateTourPackage, deleteTourPackage, getAllTour, getSingleTourPackage, getTourPackageStats, getFeaturedTour } = require('../controller/tourController');
 const tourRouter = express.Router();
 
 // create tour package
@@ -12,6 +11,8 @@ tourRouter.put("/updatePackage/:id", verifyUser, updateTourPackage)
 tourRouter.delete("/deletePackage/:id", verifyUser, deleteTourPackage)
 // get all tour package
 tourRouter.get("/getAllPackage", getAllTour)
+// get all featured tour package
+tourRouter.get("/getFeaturedTour", getFeaturedTour)
 // get single tour package
 tourRouter.get("/getSinglePackage/:id", getSingleTourPackage)
 // get tour package stats

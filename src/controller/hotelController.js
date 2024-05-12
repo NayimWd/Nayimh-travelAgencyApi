@@ -105,6 +105,36 @@ exports.getAllHotels = async (req, res) => {
     }
 };
 
+// get hotel by features
+exports.getHotelsByFeatured = async (req, res) => {
+	try {
+        // Find hotels with featured set to true
+        const featuredHotels = await hotelModel.find({featured: "true"});
+		
+        // Check if any hotels were found
+        if (featuredHotels.length === 0) {
+            return res.status(404).json({
+                status: 'Error',
+                message: 'No featured hotels found',
+            });
+        }
+
+        // Return the found hotels
+        res.status(200).json({
+            status: 'Success',
+            message: 'Featured hotels found',
+            data: featuredHotels,
+        });
+    } catch (error) {
+   
+        res.status(500).json({
+            status: 'Error',
+            message: 'Something went wrong while retrieving featured hotels',
+            error: error.message,
+        });
+    }
+};
+
 // get single hotel
 exports.getSingleHotel = (req, res) => {
 	const hotelId = req.params?.id;

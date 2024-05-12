@@ -21,6 +21,7 @@ const cors = require("cors");
 
 //Database lib import
 const mongoose = require("mongoose");
+const cartRouter = require("./src/routes/cartRoute.js");
 
 // security middlware implement
 app.use(helmet());
@@ -60,6 +61,7 @@ app.use("/api/v1", roomRouter);
 app.use("/api/v1", tourRouter);
 app.use("/api/v1", userRouter);
 app.use("/api/v1", hotelRouter);
+app.use("/api/v1", cartRouter )
 
 // handle undefined route
 app.use("*", (req, res) => {
