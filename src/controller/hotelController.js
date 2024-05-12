@@ -93,7 +93,7 @@ exports.getAllHotels = async (req, res) => {
         const skip = (pageNumber - 1) * pageSize;
 
         // Retrieve hotels based on filters, sorting, and pagination
-        const hotels = await HotelModel.find(query)
+        const hotels = await hotelModel.find(query)
             .sort(sortOptions)
             .skip(skip)
             .limit(pageSize);

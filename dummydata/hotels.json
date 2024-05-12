@@ -1,48 +1,50 @@
 [
     {
-        "name" : "Hotel Sea Crown",
+       
+        "name": "Hotel Sea Crown",
         "type": "Resort",
         "location": "coxbazar",
         "details": {
-            "place": "coxbazar",
-            "area": "Marin Drive, New Beach Road, Kolatoli, Cox's Bazar, Bangladesh"
+          "place": "coxbazar",
+          "area": "Marin Drive, New Beach Road, Kolatoli, Cox's Bazar, Bangladesh"
         },
         "nearby": {
-            "first": "0.01 km from Angel Beach Cafe",
-            "second": "0.02 km from Kolatoli Beach",
-            "third": "4.7 km from Cox's Bazar Airport"
+          "first": "0.01 km from Angel Beach Cafe",
+          "second": "0.02 km from Kolatoli Beach",
+          "third": "4.7 km from Cox's Bazar Airport"
         },
-        "rooms": [],
-        "description" : {
-            "numberOfRoom": "90",
-            "numberOfFloor": "7",
-            "overview": "Hotel Sea Crown started it′ business from late 2004. Sea Crown is a three Star Deluxe Hotel spectacularly designed and added with traditional hospitality of courteous, attractive and personalized service and is conveniently located right on the beach at a distance of 100 (one hundred) meter from Kolatoli turning point and 3 (three) kilometers from Airport in Cox′s Bazar"
-
+        "rooms": [
+         
+        ],
+        "description": {
+          "numberOfRoom": "90",
+          "numberOfFloor": "7",
+          "overview": "Hotel Sea Crown started it′ business from late 2004. Sea Crown is a three Star Deluxe Hotel spectacularly designed and added with traditional hospitality of courteous, attractive and personalized service and is conveniently located right on the beach at a distance of 100 (one hundred) meter from Kolatoli turning point and 3 (three) kilometers from Airport in Cox′s Bazar"
         },
         "photo": [
-			"https://i.ibb.co/X5DYrcg/coxbazar.jpg",
-			"https://i.ibb.co/X5DYrcg/coxbazar.jpg",
-			"https://i.ibb.co/X5DYrcg/coxbazar.jpg"
-		],
+          "https://i.ibb.co/X5DYrcg/coxbazar.jpg",
+          "https://i.ibb.co/X5DYrcg/coxbazar.jpg",
+          "https://i.ibb.co/X5DYrcg/coxbazar.jpg"
+        ],
         "facilities": {
-            "bathroom" : "Accessible Bathroom",
-            "disability" : "Disability Friendly",
-            "pickup" : "Airport Shuttle Service",
-            "parking": "Large Parking",
-            "elevator" : "Elevator",
-            "coupleFriently": "couple friently"
+          "bathroom": "Accessible Bathroom",
+          "disability": "Disability Friendly",
+          "pickup": "Airport Shuttle Service",
+          "parking": "Large Parking",
+          "elevator": "Elevator"
         },
         "meal": {
-            "breakfast" : "included",
-            "Lunch" : " Set Menu Lunc",
-            "dinner" : "Buffet Service"
+          "breakfast": "included",
+          "dinner": "Buffet Service"
         },
-        "maxPrice": 35000,
-        "minPrice": 2100,
         "quality": 4,
         "ratings": 4.5,
         "phone": "01758641254",
-        "email" : "info-seacown@email.com",
-        "featured": false
-    }
+        "email": "info-seacown@email.com",
+        "featured": false,
+        "__v": 1,
+        "maxPrice": 35000,
+        "minPrice": 2100
+      }
+      
 ]

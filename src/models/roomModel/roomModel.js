@@ -1,27 +1,32 @@
 const mongoose = require("mongoose");
 
 const RoomSchema = new mongoose.Schema({
+	id: {
+        type: String, // or whatever type you want to use for the _id field
+        required: true,
+        unique: true
+    },
 	title: {
-		String,
-		required: true,
+		type: String,
+		required: true
 	},
     price: {
-		String,
-		required: true,
+		type: String,
+		required: true
 	},
     maxPeople: {
-		String,
-		required: true,
+		type: String,
+		required: true
 	},
     description: {
-		String,
-		required: true,
+		type: String,
+		required: true
 	},
     roomNumbers: [{
        number: Number,
-       unAvilableDates: [{
+       unAvilableDates: {
         type: [Date]
-       }]
+       }
     }]
 
 }, {timestamps: true});
