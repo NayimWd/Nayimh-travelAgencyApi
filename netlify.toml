@@ -1,4 +1,4 @@
 [build]
-  base = ""
+  base = "/src/app"
   command = "npm run build"
-  functions = "index.js/netlify/functions"
+  functions = "/src/routes"
