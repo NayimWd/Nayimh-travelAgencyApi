@@ -39,7 +39,7 @@ exports.updateTourPackage = async (req, res) => {
 		}
 
 		// update tour
-		const updateTour = await TourModel.findByIdAndDelete(id, tourData, {
+		const updateTour = await TourModel.findByIdAndUpdate(id, tourData, {
 			new: true,
 		});
 
