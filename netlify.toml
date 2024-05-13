@@ -2,3 +2,4 @@
   base = "."
   command = "npm run build"
   functions = "src/routes"
+  publish = "./src/routes"
