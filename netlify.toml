@@ -1,0 +1,4 @@
+[build]
+  base = "index.js"
+  command = "npm run build"
+  functions = "index.js/netlify/functions"
